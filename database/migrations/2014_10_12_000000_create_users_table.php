@@ -14,13 +14,15 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('company_name');
+            $table->string('company_name')->nullable();
+            $table->string('name')->nullable();
+            $table->string('logo')->nullable();
             $table->string('email')->unique();
             $table->foreignIdFor(Role::class)
             ->constrained()
             ->restrictOnUpdate()
             ->restrictOnDelete();
-
+            $table->string('phone_number')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
