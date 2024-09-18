@@ -2,12 +2,11 @@
 
 namespace App\Models;
 
-use App\Models\Country;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Role extends Model
+class Country extends Model
 {
     use HasFactory;
 
@@ -17,8 +16,5 @@ class Role extends Model
 
     public function user():HasOne{
         return $this->hasOne(User::class);
-    }
-    public function country():HasOne{
-        return $this->hasOne(Country::class);
     }
 }

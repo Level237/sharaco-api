@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Country;
 use App\Models\Role;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -16,9 +17,13 @@ return new class extends Migration
             $table->id();
             $table->string('company_name')->nullable();
             $table->string('name')->nullable();
-            $table->string('logo')->nullable();
+            $table->string('profile')->nullable();
             $table->string('email')->unique();
             $table->foreignIdFor(Role::class)
+            ->constrained()
+            ->restrictOnUpdate()
+            ->restrictOnDelete();
+            $table->foreignIdFor(Country::class)
             ->constrained()
             ->restrictOnUpdate()
             ->restrictOnDelete();
