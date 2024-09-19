@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Api\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Repositories\GetClientRepository;
+use App\Services\Auth\LoginService;
+use App\Services\GenerateTokenUserService;
 use Illuminate\Http\Request;
 
 class LoginController extends Controller
@@ -20,8 +23,16 @@ class LoginController extends Controller
             }
 
             $data=request()->only('email','password');
+            $loginUser=(new LoginService())->login($data);
+            $client=(new GetClientRepository())->getClient();
+            $tokenUser=(new GenerateTokenUserService())->generate($client,$loginUser,$data['password'],$request);
+           return $tokenUser;
         }catch(\Exception $e){
-
+            return response()->json([
+                'success' => false,
+                'message' => 'Something went wrong',
+                'errors' => $e
+              ], 500);
         }
     }
 }
