@@ -8,7 +8,7 @@ class LoginRepository{
 
     public function login($data){
 
-        $user=User::where("phone_number",$data["phone_number"])->first();
+        $user=User::where("email",$data["email"])->first();
 
             return $user;
 

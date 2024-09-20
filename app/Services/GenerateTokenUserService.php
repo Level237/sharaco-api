@@ -15,16 +15,13 @@ class GenerateTokenUserService implements GenerateTokenInterface{
         if($userData['role_id']===1){
             $scope="admin";
         }else if($userData['role_id']===2){
-            $scope="escort";
-        }
-        else if($userData['role_id']===3){
-            $scope="customer";
+            $scope="user";
         }
         $request->request->add([
-            "grant_type" => "password",
-            "client_id"=>$clientData->id,
-            'client_secret' => $clientData->secret,
-            'username'      => $userData['phone_number'],
+            "grant_type" => "credentials",
+            "client_id"=>2,
+            'client_secret' => "vtHsZDNuSRjfxKrI5LbkqGHbM0BGMVpuMVzGPyCq",
+            'username'      => $userData['email'],
             'password'      => $password,
             "scope"         =>$scope
         ]);

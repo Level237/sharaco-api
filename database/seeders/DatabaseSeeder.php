@@ -18,8 +18,7 @@ class DatabaseSeeder extends Seeder
         $this->command->info('Country table seeded!');
 
 
-        $path = 'database/sql_files/client_oauth.sql';
-        DB::unprepared(file_get_contents($path));
+
         $this->command->info('client table seeded!');
         // \App\Models\User::factory(10)->create();
 

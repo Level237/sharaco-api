@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Interfaces\auth;
+namespace App\Interfaces;
 
 interface LoginInterface {
 
