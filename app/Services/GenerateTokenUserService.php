@@ -18,9 +18,9 @@ class GenerateTokenUserService implements GenerateTokenInterface{
             $scope="user";
         }
         $request->request->add([
-            "grant_type" => "credentials",
-            "client_id"=>2,
-            'client_secret' => "vtHsZDNuSRjfxKrI5LbkqGHbM0BGMVpuMVzGPyCq",
+            "grant_type" => "client_credentials",
+            "client_id"=>$clientData->id,
+            'client_secret' => $clientData->secret,
             'username'      => $userData['email'],
             'password'      => $password,
             "scope"         =>$scope
