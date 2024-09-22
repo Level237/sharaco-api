@@ -18,12 +18,12 @@ class GenerateTokenUserService implements GenerateTokenInterface{
             $scope="user";
         }
         $request->request->add([
-            "grant_type" => "client_credentials",
+            "grant_type" => "password",
             "client_id"=>$clientData->id,
             'client_secret' => $clientData->secret,
             'username'      => $userData['email'],
             'password'      => $password,
-            "scope"         =>$scope
+            'scope'         =>"*"
         ]);
 
         // Fire off the internal request.

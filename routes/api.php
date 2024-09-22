@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\Auth\LoginController;
 use App\Http\Controllers\Api\Auth\LogoutController;
 use App\Http\Controllers\Api\Auth\RegisterController;
+use App\Http\Controllers\Api\User\ProfileController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -23,6 +24,7 @@ Route::post('login',[LoginController::class,"login"]);
 
 Route::middleware(['auth:api'])->prefix('v1')->group(function(){
 
+    Route::get('/user/me',[ProfileController::class,'currentUser']);
     Route::post('/logout',[LogoutController::class,'logout']);
 });
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
