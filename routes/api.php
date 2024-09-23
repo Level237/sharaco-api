@@ -27,6 +27,4 @@ Route::middleware(['auth:api'])->prefix('v1')->group(function(){
     Route::get('/user/me',[ProfileController::class,'currentUser']);
     Route::post('/logout',[LogoutController::class,'logout']);
 });
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+
