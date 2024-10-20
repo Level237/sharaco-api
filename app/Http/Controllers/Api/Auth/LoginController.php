@@ -26,6 +26,8 @@ class LoginController extends Controller
             $loginUser=(new LoginService())->login($data);
             $client=(new GetClientRepository())->getClient();
             $tokenUser=(new GenerateTokenUserService())->generate($client,$loginUser,$data['password'],$request);
+
+            //$response=json_decode($tokenUser);
            return $tokenUser;
         }catch(\Exception $e){
             return response()->json([

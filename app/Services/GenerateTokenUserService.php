@@ -5,7 +5,7 @@ namespace App\Services;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Interfaces\GenerateTokenInterface;
-
+use Illuminate\Support\Facades\Auth;
 class GenerateTokenUserService implements GenerateTokenInterface{
 
     public function generate($clientData, $userData,$password,$request)
@@ -29,8 +29,10 @@ class GenerateTokenUserService implements GenerateTokenInterface{
         // Fire off the internal request.
     $token = Request::create(
         'oauth/token',
-        'POST'
+        'POST',
+
     );
+    //return response()->json(['token'=>$token]);
     return Route::dispatch($token);
         }
     }
