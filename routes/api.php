@@ -25,14 +25,11 @@ Route::post('login',[LoginController::class,"login"]);
 
 Route::middleware(['auth:api','scopes:admin'])->prefix('v1')->group(function(){
 
-    Route::resource('users',[UserController::class]);
+    Route::apiResource('/users',UserController::class);
+
 });
 
-Route::middleware(['auth:api'])->prefix('v1')->group(function(){
 
-    Route::get('/user/me',[ProfileController::class,'currentUser']);
-    Route::post('/logout',[LogoutController::class,'logout']);
-});
 
 Route::middleware(['auth:api'])->prefix('v1')->group(function(){
 
