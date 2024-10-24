@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\Admin\UserController;
 use App\Http\Controllers\Api\Auth\LoginController;
 use App\Http\Controllers\Api\Auth\LogoutController;
 use App\Http\Controllers\Api\Auth\RegisterController;
@@ -21,6 +22,17 @@ use Illuminate\Support\Facades\Route;
 Route::post('new/user',[RegisterController::class,'register']);
 Route::post('login',[LoginController::class,"login"]);
 
+
+Route::middleware(['auth:api','scopes:admin'])->prefix('v1')->group(function(){
+
+    Route::resource('users',[UserController::class]);
+});
+
+Route::middleware(['auth:api'])->prefix('v1')->group(function(){
+
+    Route::get('/user/me',[ProfileController::class,'currentUser']);
+    Route::post('/logout',[LogoutController::class,'logout']);
+});
 
 Route::middleware(['auth:api'])->prefix('v1')->group(function(){
 
