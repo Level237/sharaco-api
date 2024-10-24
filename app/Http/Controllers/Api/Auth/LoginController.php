@@ -13,12 +13,15 @@ class LoginController extends Controller
     public function login(Request $request){
         try{
             $valid = validator($request->only('email','password'), [
-                'email' => 'required|email|exists:users',
-                'password' => 'required|string',
+                'email' => 'email|exists:users',
+                'password' => 'string',
             ]);
 
+            if($request->email=="" && $request->password==""){
+                return response()->json(['message'=>"l'email ou mot de passe ne peut pas etre nul"],400);
+            }
             if ($valid->fails()) {
-                return response()->json(['error'=>$valid->errors()], 400);
+                return response()->json(['error'=>$valid->errors()], 500);
 
             }
 
