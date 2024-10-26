@@ -23,7 +23,7 @@ class GenerateTokenUserService implements GenerateTokenInterface{
             'client_secret' => $clientData->secret,
             'username'      => $userData['email'],
             'password'      => $password,
-            'scope'         =>"*"
+            'scope'         =>$scope
         ]);
 
         // Fire off the internal request.

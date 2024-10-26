@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Api\Auth;
 
-use App\Http\Controllers\Controller;
-use App\Repositories\GetClientRepository;
-use App\Services\Auth\LoginService;
-use App\Services\GenerateTokenUserService;
 use Illuminate\Http\Request;
+use App\Services\Auth\LoginService;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Http;
+use App\Repositories\GetClientRepository;
+use App\Services\GenerateTokenUserService;
+use Illuminate\Support\Facades\Route;
 
 class LoginController extends Controller
 {
@@ -39,5 +41,24 @@ class LoginController extends Controller
                 'errors' => $e
               ], 500);
         }
+    }
+
+    public function refresh(Request $request){
+        $client=(new GetClientRepository())->getClient();
+        $request->request->add([
+            'grant_type' => 'refresh_token',
+            'refresh_token' => $request->refresh_token,
+            "client_id"=>$client->id,
+            'client_secret' => $client->secret,
+        ]);
+
+        // Fire off the internal request.
+    $token = Request::create(
+        'oauth/token',
+        'POST',
+
+    );
+    //return response()->json(['token'=>$token]);
+    return Route::dispatch($token);
     }
 }

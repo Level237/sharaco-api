@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('new/user',[RegisterController::class,'register']);
 Route::post('login',[LoginController::class,"login"]);
-
+Route::get('refresh',[LoginController::class,'refresh']);
 
 Route::middleware(['auth:api','scopes:admin'])->prefix('v1')->group(function(){
 
