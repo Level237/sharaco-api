@@ -47,7 +47,7 @@ class LoginController extends Controller
         $client=(new GetClientRepository())->getClient();
         $request->request->add([
             'grant_type' => 'refresh_token',
-            'refresh_token' => $request->refresh_token,
+            'refresh_token' => $request->refreshToken,
             "client_id"=>$client->id,
             'client_secret' => $client->secret,
         ]);
