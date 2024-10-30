@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Description;
 use App\Models\Quote;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -14,11 +15,14 @@ return new class extends Migration
     {
         Schema::create('quote_descriptions', function (Blueprint $table) {
             $table->id();
+            $table->foreignIdFor(Description::class)
+            ->constrained()
+            ->cascadeOnDelete()
+            ->cascadeOnUpdate();
             $table->foreignIdFor(Quote::class)
             ->constrained()
             ->cascadeOnDelete()
             ->cascadeOnUpdate();
-
             $table->timestamps();
         });
     }
