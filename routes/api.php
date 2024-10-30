@@ -5,6 +5,7 @@ use App\Http\Controllers\Api\Auth\LoginController;
 use App\Http\Controllers\Api\Auth\LogoutController;
 use App\Http\Controllers\Api\Auth\RegisterController;
 use App\Http\Controllers\Api\User\ProfileController;
+use App\Http\Controllers\Api\User\QuoteController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -33,6 +34,7 @@ Route::middleware(['auth:api','scopes:admin'])->prefix('v1')->group(function(){
 
 Route::middleware(['auth:api'])->prefix('v1')->group(function(){
 
+    Route::apiResource('/quotes',QuoteController::class);
     Route::get('/user/me',[ProfileController::class,'currentUser']);
     Route::post('/logout',[LogoutController::class,'logout']);
 });

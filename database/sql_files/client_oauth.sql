@@ -25,10 +25,10 @@ DROP TABLE IF EXISTS `oauth_clients`;
 CREATE TABLE `oauth_clients` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
   `user_id` bigint unsigned DEFAULT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `secret` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `provider` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `redirect` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `secret` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `provider` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `redirect` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `personal_access_client` tinyint(1) NOT NULL,
   `password_client` tinyint(1) NOT NULL,
   `revoked` tinyint(1) NOT NULL,
@@ -45,7 +45,7 @@ CREATE TABLE `oauth_clients` (
 
 LOCK TABLES `oauth_clients` WRITE;
 /*!40000 ALTER TABLE `oauth_clients` DISABLE KEYS */;
-INSERT INTO `oauth_clients` VALUES (1,NULL,'users','vtHsZDNuSRjfxKrI5LbkqGHbM0BGMVpuMVzGPyCq',NULL,'http://localhost/auth/callback',0,0,0,'2024-09-18 22:51:53','2024-09-18 22:51:53'),(2,NULL,'Laravel Password Grant Client','hrNMnml1O8fWznnFsDI0d6LJe24HoRXxXerpJeIq','users','http://localhost',0,1,0,'2024-09-18 22:53:48','2024-09-18 22:53:48');
+INSERT INTO `oauth_clients` VALUES (1,NULL,'Laravel Password Grant Client','1FGjHgCbD6N2pGLxE1U14Ov9VNS4eX3xrvzlXfEM','users','http://localhost',0,1,0,'2024-09-18 22:53:48','2024-09-18 22:53:48');
 /*!40000 ALTER TABLE `oauth_clients` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -58,4 +58,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-09-19 18:30:42
+-- Dump completed on 2024-10-30 13:46:10
