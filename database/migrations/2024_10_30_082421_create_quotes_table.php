@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Structure;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -15,7 +16,7 @@ return new class extends Migration
         Schema::create('quotes', function (Blueprint $table) {
             $table->id();
             $table->string('quote_title');
-            $table->foreignIdFor(Model::class)
+            $table->foreignIdFor(Structure::class)
             ->constrained()
             ->restrictOnDelete()
             ->restrictOnUpdate();

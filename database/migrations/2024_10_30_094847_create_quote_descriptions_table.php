@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Quote;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -11,12 +12,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('descriptions', function (Blueprint $table) {
+        Schema::create('quote_descriptions', function (Blueprint $table) {
             $table->id();
-            $table->string('designation');
-            $table->string('quantity');
-            $table->string('unit_price');
-            $table->string('total_price');
+            $table->foreignIdFor(Quote::class)
+            ->constrained()
+            ->cascadeOnDelete()
+            ->cascadeOnUpdate();
+
             $table->timestamps();
         });
     }
@@ -26,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('descriptions');
+        Schema::dropIfExists('quote_descriptions');
     }
 };

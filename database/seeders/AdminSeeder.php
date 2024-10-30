@@ -20,7 +20,7 @@ class AdminSeeder extends Seeder
             'password'=>bcrypt('password'),
             'country_id'=>31,
             'isCompany'=>0,
-            'phone_number'=>"690394365",
+            'phone_number'=>"690562832",
         ],
         );
     }
