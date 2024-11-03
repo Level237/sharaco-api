@@ -36,7 +36,6 @@ Route::middleware(['auth:api','scopes:admin'])->prefix('v1')->group(function(){
 
 Route::middleware(['auth:api'])->prefix('v1')->group(function(){
 
-    Route::get('countries',[CountryController::class,"index"]);
     Route::apiResource('/clients',ClientController::class);
     Route::apiResource('/quotes',QuoteController::class);
     Route::get('/user/me',[ProfileController::class,'currentUser']);
