@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\User;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ClientRequest;
 use App\Models\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -14,7 +15,7 @@ class ClientController extends Controller
      */
     public function index()
     {
-        $clients=Client::where('user_id',Auth::user()->id)->get();
+        $clients=Client::where('user_id',Auth::guard('api')->user()->id)->get();
 
         return $clients;
     }
@@ -25,7 +26,7 @@ class ClientController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ClientRequest $request)
     {
 
         try{
@@ -35,7 +36,7 @@ class ClientController extends Controller
             $client->town=$request->town;
             $client->phone_number=$request->phone_number;
             $client->client_email=$request->client_email;
-            $client->user_id=Auth::guard('api')->id;
+            $client->user_id=Auth::guard('api')->user()->id;
             $client->isCompany=$request->isCompany;
             if($request->logo){
                 $client->logo=$request->logo;
