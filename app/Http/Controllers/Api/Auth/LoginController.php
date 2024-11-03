@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Api\Auth;
 use Illuminate\Http\Request;
 use App\Services\Auth\LoginService;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Http;
 use App\Repositories\GetClientRepository;
 use App\Services\GenerateTokenUserService;
 use Illuminate\Support\Facades\Route;

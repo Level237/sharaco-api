@@ -22,17 +22,35 @@ class ClientController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
-    {
-        //
-    }
-
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-        //
+
+        try{
+            $client=new Client;
+            $client->client_name=$request->client_name;
+            $client->country=$request->country;
+            $client->town=$request->town;
+            $client->phone_number=$request->phone_number;
+            $client->client_email=$request->client_email;
+            $client->user_id=Auth::guard('api')->id;
+            $client->isCompany=$request->isCompany;
+            if($request->logo){
+                $client->logo=$request->logo;
+            }
+            $client->save();
+
+            return response()->json(['message'=>"client created successfully"],200);
+        }catch(\Exception $e){
+            return response()->json([
+                'success' => false,
+                'message' => 'Something went wrong',
+                'errors' => $e
+              ], 500);
+        }
+
     }
 
     /**

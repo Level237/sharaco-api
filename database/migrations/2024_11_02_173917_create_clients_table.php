@@ -16,16 +16,13 @@ return new class extends Migration
         Schema::create('clients', function (Blueprint $table) {
             $table->id();
             $table->string('client_name');
-            $table->foreignIdFor(Country::class)
-            ->constrained()
-            ->restrictOnUpdate()
-            ->restrictOnDelete();
             $table->foreignIdFor(User::class)
             ->constrained()
             ->restrictOnUpdate()
             ->restrictOnDelete();
             $table->string('town');
             $table->string('phone_number');
+            $table->string('country');
             $table->boolean('isCompany')->default(0);
             $table->string('client_email');
             $table->string('logo')->nullable();
