@@ -38,8 +38,10 @@ class ClientController extends Controller
             $client->client_email=$request->client_email;
             $client->user_id=Auth::guard('api')->user()->id;
             $client->isCompany=$request->isCompany;
-            if($request->logo){
-                $client->logo=$request->logo;
+            if($request->file('logo')){
+                $file = $request->file('logo');
+                $image_path = $file->store('clients', 'public');
+                $client->logo=$image_path;
             }
             $client->save();
 
