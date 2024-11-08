@@ -26,26 +26,13 @@ class ClientController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(ClientRequest $request)
+    public function store(Request $request)
     {
 
         try{
-            $client=new Client;
-            $client->client_name=$request->client_name;
-            $client->country=$request->country;
-            $client->town=$request->town;
-            $client->phone_number=$request->phone_number;
-            $client->client_email=$request->client_email;
-            $client->user_id=Auth::guard('api')->user()->id;
-            $client->isCompany=$request->isCompany;
-            if($request->file('logo')){
-                $file = $request->file('logo');
-                $image_path = $file->store('clients', 'public');
-                $client->logo=$image_path;
-            }
-            $client->save();
+   // $image_path = $request->file('logo')->store('candidates', 'public');
 
-            return response()->json(['message'=>"client created successfully"],200);
+            return response()->json(['message'=>$request->file('logo')],200);
         }catch(\Exception $e){
             return response()->json([
                 'success' => false,
