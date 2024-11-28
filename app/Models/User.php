@@ -49,6 +49,10 @@ class User extends Authenticatable
     public function role():HasOne{
         return $this->hasOne(Role::class);
     }
+
+     public function country():HasOne{
+        return $this->hasOne(Country::class);
+    }
     public function clients():HasMany{
         return $this->hasMany(Client::class);
     }
