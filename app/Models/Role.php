@@ -18,7 +18,5 @@ class Role extends Model
     public function user():HasOne{
         return $this->hasOne(User::class);
     }
-    public function country():HasOne{
-        return $this->hasOne(Country::class);
-    }
+   
 }
