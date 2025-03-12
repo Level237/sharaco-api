@@ -16,22 +16,20 @@ return new class extends Migration
         Schema::disableForeignKeyConstraints();
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('company_name')->nullable();
-            $table->string('name')->nullable();
+            $table->string('userName')->nullable();
+            $table->string("lastName");
+            $table->string("firstName");
             $table->string('profile')->nullable();
             $table->string('email')->unique();
             $table->foreignIdFor(Role::class)
             ->constrained()
             ->restrictOnUpdate()
             ->restrictOnDelete();
-            $table->foreignIdFor(Country::class)
-            ->constrained()
-            ->restrictOnUpdate()
-            ->restrictOnDelete();
             $table->boolean('isCompany')->default(0);
             $table->string('phone_number')->unique();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
+            $table->unsignedBigInteger('adress_id')->nullable();
+            $table->foreign('adress_id')->references('id')->on('adresses')->onDelete('cascade');
             $table->rememberToken();
             $table->timestamps();
         });
