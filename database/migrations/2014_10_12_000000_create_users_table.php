@@ -1,10 +1,11 @@
 <?php
 
-use App\Models\Country;
 use App\Models\Role;
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
+use App\Models\Country;
+use App\Models\Profession;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 return new class extends Migration
 {
@@ -25,11 +26,16 @@ return new class extends Migration
             ->constrained()
             ->restrictOnUpdate()
             ->restrictOnDelete();
+            $table->string('password');
             $table->boolean('isCompany')->default(0);
             $table->string('phone_number')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->unsignedBigInteger('adress_id')->nullable();
             $table->foreign('adress_id')->references('id')->on('adresses')->onDelete('cascade');
+            $table->foreignIdFor(Profession::class)
+            ->constrained()
+            ->restrictOnUpdate()
+            ->restrictOnDelete();
             $table->rememberToken();
             $table->timestamps();
         });

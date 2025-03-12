@@ -22,6 +22,7 @@ class UserSeeder extends Seeder
             'password'=>bcrypt('password'),
             'isCompany'=>0,
             'phone_number'=>"690394365",
+            'profession_id'=>1,
         ],
         );
     }

@@ -13,12 +13,12 @@ class RegisterController extends Controller
 
     public function register(RegisterRequest $request){
         $user=new User;
-        $user->company_name=$request->company_name;
-        $user->name=$request->name;
-        $user->profile=$request->profile;
+        $user->lastName=$request->lastName;
+        $user->firstName=$request->firstName;
         $user->email=$request->email;
-        $user->role_id=$request->role_id;
-        $user->country_id=$request->country_id;
+        $user->role_id=2;
+        $user->isCompany=$request->isCompany;
+        $user->adress_id=$request->adress_id;
         $user->phone_number=$request->phone_number;
         $user->password=Hash::make($request->password);
 

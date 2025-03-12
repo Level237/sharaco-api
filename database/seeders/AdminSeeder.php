@@ -22,6 +22,7 @@ class AdminSeeder extends Seeder
             'password'=>bcrypt('password'),
             'isCompany'=>0,
             'phone_number'=>"690562832",
+            'profession_id'=>1,
         ],
         );
     }
