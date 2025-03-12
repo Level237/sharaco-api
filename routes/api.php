@@ -1,15 +1,16 @@
 <?php
 
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\Admin\UserController;
 use App\Http\Controllers\Api\Auth\LoginController;
+use App\Http\Controllers\Api\User\QuoteController;
 use App\Http\Controllers\Api\Auth\LogoutController;
-use App\Http\Controllers\Api\Auth\RegisterController;
 use App\Http\Controllers\Api\User\ClientController;
 use App\Http\Controllers\Api\User\CountryController;
 use App\Http\Controllers\Api\User\ProfileController;
-use App\Http\Controllers\Api\User\QuoteController;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\Auth\RegisterController;
+use App\Http\Controllers\Api\Guard\ProfessionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,8 +23,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::post('new/user',[RegisterController::class,'register']);
+Route::post('register',[RegisterController::class,'register']);
 Route::post('login',[LoginController::class,"login"]);
+Route::get('professions',[ProfessionController::class,'index']);
 Route::get('refresh',[LoginController::class,'refresh']);
 
 Route::middleware(['auth:api','scopes:admin'])->prefix('v1')->group(function(){

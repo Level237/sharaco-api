@@ -36,6 +36,7 @@ return new class extends Migration
             ->constrained()
             ->restrictOnUpdate()
             ->restrictOnDelete();
+            $table->string('source')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

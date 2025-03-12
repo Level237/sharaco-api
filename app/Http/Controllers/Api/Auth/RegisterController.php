@@ -11,17 +11,19 @@ use Illuminate\Http\Request;
 class RegisterController extends Controller
 {
 
-    public function register(RegisterRequest $request){
-        $user=new User;
-        $user->lastName=$request->lastName;
-        $user->firstName=$request->firstName;
-        $user->email=$request->email;
-        $user->role_id=2;
-        $user->isCompany=$request->isCompany;
-        $user->adress_id=$request->adress_id;
+    public function register(Request $request){
+
+        try {
+            $user=new User;
+            $user->lastName=$request->lastName;
+            $user->firstName=$request->firstName;
+            $user->email=$request->email;
+            $user->role_id=2;
+            $user->isCompany=$request->isCompany;
         $user->phone_number=$request->phone_number;
         $user->password=Hash::make($request->password);
-
+            $user->profession_id=intval($request->profession_id);
+            $user->source=$request->source;
         if($user->save()){
 
             return response($user, 200)
@@ -30,5 +32,10 @@ class RegisterController extends Controller
         return response("{error:error}", 500)
                   ->header('Content-Type', 'application/json');
        }
+        } catch (\Exception $e) {
+                return response()->json([
+                    'error' => $e->getMessage()
+                ], 500);
+            }
     }
 }
