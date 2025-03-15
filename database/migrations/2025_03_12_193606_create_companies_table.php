@@ -15,7 +15,7 @@ return new class extends Migration
         Schema::create('companies', function (Blueprint $table) {
             $table->id();
             $table->string("company_name");
-            $table->string("company_logo");
+            $table->string("company_logo")->nullable();
             $table->foreignIdFor(User::class)
             ->constrained()
             ->restrictOnUpdate()
