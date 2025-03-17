@@ -11,6 +11,7 @@ use App\Http\Controllers\Api\User\CountryController;
 use App\Http\Controllers\Api\User\ProfileController;
 use App\Http\Controllers\Api\Auth\RegisterController;
 use App\Http\Controllers\Api\Guard\ProfessionController;
+use App\Http\Controllers\Api\Guard\ListCountryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,7 +28,7 @@ Route::post('register',[RegisterController::class,'register']);
 Route::post('login',[LoginController::class,"login"]);
 Route::get('professions',[ProfessionController::class,'index']);
 Route::get('refresh',[LoginController::class,'refresh']);
-
+Route::get('/countries',[ListCountryController::class,'index']);
 Route::middleware(['auth:api','scopes:admin'])->prefix('v1')->group(function(){
 
     Route::apiResource('/users',UserController::class);
