@@ -13,7 +13,7 @@ class DocumentStatus(str, Enum):
     SENT = "SENT"
     PAID = "PAID"
 
-class Document(SQLModel,table=true):
+class Document(SQLModel,table=True):
     id: UUID = Field(default_factory=uuid4, primary_key=True)
     type: DocumentType = Field(default=DocumentType.DEVIS)
     status: DocumentStatus = Field(default=DocumentStatus.DRAFT)
