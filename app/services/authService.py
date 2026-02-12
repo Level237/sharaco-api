@@ -1,6 +1,6 @@
 from sqlmodel import Session
 from fastapi import HTTPException, status
-from app.services.user_service import UserService
+from app.services.userService import UserService
 from app.core.security import verify_password, create_access_token
 
 
@@ -8,8 +8,8 @@ class AuthService:
 
     @staticmethod
 
-    def authenticate(db:Session,email:str,password:str):
-        user = UserService.get_by_email(db,email)
+    async def authenticate(db:Session,email:str,password:str):
+        user = await UserService.get_by_email(db,email)
 
         if not user or not verify_password(password,user.hashed_password):
             raise HTTPException(

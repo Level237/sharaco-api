@@ -16,6 +16,7 @@ class UserService:
 
     @staticmethod
 
-    def get_by_email(db:Session,email:str)-> User | None:
+    async def get_by_email(db:Session,email:str)-> User | None:
         statement = select(User).where(User.email == email)
-        return db.exec(statement).first()
+        result = await db.execute(statement)
+        return result.scalar_one_or_none()
