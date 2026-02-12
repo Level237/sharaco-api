@@ -25,7 +25,7 @@ async def create_main_user():
         else:
             # 2. Création via le service (qui gère le hashage du mot de passe)
             try:
-                new_user = await UserService.create_user(db,email,password)
+                new_user = UserService.create_user(db,email,password)
                 print(f"✅ Utilisateur créé avec succès : {new_user.email}")
                 print(f"🆔 ID généré : {new_user.id}")
                 print("---")
