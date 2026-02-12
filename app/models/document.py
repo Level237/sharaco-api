@@ -23,9 +23,11 @@ class Document(SQLModel,table=True):
     created_at: datetime = Field(default_factory=datetime.utcnow)
     due_date: Optional[datetime] = None
 
+    owner: "User" = Relationship(back_populates="documents")
     user_id: UUID = Field(foreign_key="user.id")
     client_id: UUID = Field(foreign_key="client.id")
 
+    client: "Client" = Relationship(back_populates="documents")
     items: List["DocumentItem"] = Relationship(back_populates="document")
 
 

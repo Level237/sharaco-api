@@ -6,7 +6,7 @@ import os
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from sqlmodel import Session
-from app.database import engine
+from app.db.engine import engine
 from app.services.userService import UserService
 
 async def create_main_user():
@@ -18,7 +18,7 @@ async def create_main_user():
         password = "password123" 
         
         # 1. Vérifier si l'utilisateur existe déjà pour éviter les doublons
-        existing_user = await UserService.get_by_email(db,email)
+        existing_user = UserService.get_by_email(db,email)
         
         if existing_user:
             print(f"⚠️ L'utilisateur {email} existe déjà en base de données.")
